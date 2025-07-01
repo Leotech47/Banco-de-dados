@@ -1,7 +1,3 @@
-# Banco-de-dados
-
-Claro! Abaixo está uma explicação detalhada e bem estruturada em **Markdown** sobre os temas solicitados:
-
 ---
 
 # 🗃️ Banco de Dados
