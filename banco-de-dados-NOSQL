@@ -1,44 +1,120 @@
-# O que é um Banco de Dados Não Relacional (NoSQL)?
+---
 
-Em um mundo cada vez mais orientado a dados, os **bancos de dados NoSQL** surgiram como uma alternativa flexível, escalável e eficiente aos bancos relacionais tradicionais.
+## 🎓 Aula: Banco de Dados Não Relacional (NoSQL)
 
-🔍 **Mas o que isso significa na prática?**
+---
 
-Enquanto os bancos **relacionais (SQL)** usam tabelas com colunas e linhas rigidamente estruturadas, os bancos **NoSQL** permitem trabalhar com estruturas de dados mais flexíveis, como **documentos, grafos, pares chave-valor e colunas**.
+### 1️⃣ CONCEITO
 
-💡 **Principais modelos NoSQL:**
+**NoSQL** (Not Only SQL) é uma classe de bancos de dados que **não seguem o modelo relacional tradicional (tabelas com linhas e colunas)**.
+São ideais para **grandes volumes de dados, com estrutura flexível e em constante evolução**.
 
-1. **Documentos** (ex: MongoDB)
-   → Armazenam dados em formato JSON ou BSON.
-   → Ótimos para aplicações web, APIs e microserviços.
+🔹 Principais características:
 
-2. **Chave-valor** (ex: Redis, DynamoDB)
-   → Muito rápidos! Ideais para caches, sessões de usuário e filas.
+* Escalabilidade horizontal (servidores distribuídos)
+* Alta performance em leituras/gravações
+* Estrutura de dados flexível (documentos, grafos, chave-valor, etc.)
+* Ideal para dados semi-estruturados e não estruturados
 
-3. **Colunar** (ex: Cassandra, HBase)
-   → Trabalham com grandes volumes de dados analíticos.
-   → Muito usados em sistemas de recomendação e Big Data.
+---
 
-4. **Grafos** (ex: Neo4j)
-   → Focados em representar e consultar relações complexas.
-   → Usados em redes sociais, sistemas de recomendação e fraudes.
+### 2️⃣ MODELOS DE BANCOS NoSQL
 
-🚀 **Aplicações práticas do NoSQL:**
+| Modelo         | Exemplo          | Características principais              | Uso comum                              |
+| -------------- | ---------------- | --------------------------------------- | -------------------------------------- |
+| 📄 Documento   | MongoDB, CouchDB | JSON ou BSON como estrutura de dados    | APIs, microserviços, apps web/móveis   |
+| 🔑 Chave-valor | Redis, DynamoDB  | Dados acessados por uma chave única     | Cache, sessões de usuário, filas       |
+| 🧱 Colunar     | Cassandra, HBase | Armazena colunas por bloco              | Big Data, análise de dados massivos    |
+| 🔗 Grafos      | Neo4j, ArangoDB  | Foco em relacionamentos entre entidades | Redes sociais, motores de recomendação |
 
-✅ Plataformas de streaming (Netflix, Spotify)
-✅ E-commerce com catálogo dinâmico (Amazon)
-✅ Aplicações móveis e jogos online
-✅ Sistemas de IoT e telemetria
-✅ Monitoramento em tempo real (logs, métricas)
+---
 
-🔧 **Por que escolher NoSQL?**
+### 3️⃣ APLICAÇÕES PRÁTICAS
 
-* Alta escalabilidade horizontal
-* Flexibilidade no modelo de dados
-* Melhor desempenho em certos tipos de leitura/escrita massiva
-* Ideal para dados sem estrutura fixa ou em constante mudança
+✅ **Plataformas de streaming:** histórico e recomendações personalizadas
+✅ **E-commerces dinâmicos:** gerenciamento de produtos com diferentes atributos
+✅ **Jogos online e apps móveis:** armazenam dados de sessão, progresso e eventos
+✅ **Sistemas de IoT:** coleta de dados em tempo real de milhares de sensores
+✅ **Redes sociais:** modelagem de conexões entre usuários com grafos
 
-📌 **Dica final:**
-NoSQL **não substitui** os bancos relacionais em todos os cenários, mas **complementa** quando o volume, a velocidade ou a variedade dos dados exige um modelo mais flexível.
+---
 
-\#bancodedados #NoSQL #MongoDB #tecnologia #desenvolvimento #engenhariadedados #BigData #inovacao #backend #sistemas
+### 4️⃣ PASSO A PASSO: CRIANDO UM BANCO NoSQL
+
+Vamos usar o **MongoDB**, um dos bancos NoSQL mais populares do mercado.
+
+#### 🛠️ Pré-requisitos:
+
+* Instalar o [MongoDB Compass](https://www.mongodb.com/try/download/compass) (interface gráfica)
+* Ou usar o [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) (versão em nuvem gratuita)
+
+#### Passo 1 – Criar banco e coleção:
+
+```js
+// No MongoDB, criamos coleções (semelhantes a tabelas)
+use hamburgueria
+
+db.pedidos.insertOne({
+  cliente: "João Silva",
+  itens: [
+    { produto: "X-Burguer", qtd: 1, preco: 18.5 },
+    { produto: "Refrigerante", qtd: 1, preco: 6.0 }
+  ],
+  total: 24.5,
+  data: new Date()
+})
+```
+
+#### Passo 2 – Buscar documentos:
+
+```js
+db.pedidos.find()
+```
+
+#### Passo 3 – Filtrar por cliente:
+
+```js
+db.pedidos.find({ cliente: "João Silva" })
+```
+
+#### Passo 4 – Atualizar pedido:
+
+```js
+db.pedidos.updateOne(
+  { cliente: "João Silva" },
+  { $set: { total: 25.0 } }
+)
+```
+
+#### Passo 5 – Excluir documento:
+
+```js
+db.pedidos.deleteOne({ cliente: "João Silva" })
+```
+
+---
+
+### 5️⃣ DIFERENÇAS RESUMIDAS: SQL vs NoSQL
+
+| Aspecto          | SQL                         | NoSQL                              |
+| ---------------- | --------------------------- | ---------------------------------- |
+| Estrutura        | Tabelas                     | Documentos, grafos, chave-valor    |
+| Esquema (schema) | Fixo                        | Flexível                           |
+| Escalabilidade   | Vertical (1 servidor maior) | Horizontal (vários servidores)     |
+| Consistência     | Alta (ACID)                 | Eventual, mas altamente disponível |
+| Flexibilidade    | Menor                       | Alta                               |
+
+---
+
+### ✅ CONCLUSÃO
+
+🔹 **NoSQL** é ideal quando você precisa de:
+
+* Flexibilidade de dados
+* Escalabilidade em larga escala
+* Performance em tempo real
+
+🔹 Aprender bancos NoSQL, como **MongoDB**, é essencial para atuar com aplicações modernas, Big Data, e sistemas distribuídos.
+
+---
+
